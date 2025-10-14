@@ -1,7 +1,50 @@
 body {
   background-color: white;
-  color: black; /* 텍스트는 검정색으로 기본 설정 */
+  color: black;
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  z-index: 10;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0;
+  gap: 2rem;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  opacity: 0.6;
+}
+
+main {
+  padding-top: 80px; /* 헤더 공간 확보 */
+}
+
+.content-section {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+}
+
+.content-section.active {
+  display: block;
 }
