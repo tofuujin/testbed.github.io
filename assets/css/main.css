@@ -1,0 +1,7 @@
+body {
+  background-color: white;
+  color: black; /* 텍스트는 검정색으로 기본 설정 */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
