@@ -12,24 +12,12 @@ html, body {
 }
 
 /* SVG 크기 제어 */
-#art {
-  display: block;
-  width: 200px;    /* 크기 여기서 조절 */
-  height: auto;
-  overflow: visible;  /* 회전 시 잘림 방지 */
-}
-
-/* 인터랙션 타깃 */
-#moveo g,
-#moveo path {
-  cursor: pointer;
+#moving-objects rect,
+#moving-objects path,
+#moving-objects g {
   transform-box: fill-box;
   transform-origin: center;
-  transition: transform 0.8s ease;
-}
-
-/* hover 시 회전 */
-#moveo g:hover,
-#moveo path:hover {
-  transform: rotate(360deg);
+  transition: transform 1s ease;
+  cursor: pointer;
+  pointer-events: bounding-box; /* ← hover 영역을 도형 외곽까지 확장 */
 }
