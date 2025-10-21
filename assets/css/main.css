@@ -14,7 +14,7 @@ html, body {
 /* SVG 크기 제어 */
 #art {
   display: block;
-  width: 400px;    /* 크기 여기서 조절 */
+  width: 200px;    /* 크기 여기서 조절 */
   height: auto;
   overflow: visible;  /* 회전 시 잘림 방지 */
 }
