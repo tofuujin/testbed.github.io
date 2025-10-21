@@ -1,31 +1,32 @@
-body {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* style.css */
+html, body {
   margin: 0;
+  padding: 0;
+  background: #fff;
 }
 
-svg {
-  overflow: visible; /* 회전 시 잘림 방지 */
+/* ✅ 크기 제어: 여기 값만 바꾸면 전체 스케일 조절 */
+#art {
+  display: block;     /* inline → block, 크기 컨트롤 안정화 */
+  width: 320px;       /* 원하는 크기 */
+  height: auto;
+  overflow: visible;  /* 회전 시 잘림 방지 */
 }
-svg g:not([id^="Layer"]) {
-  transition: transform 1s ease;
-  transform-box: fill-box;
-  transform-origin: center;
+
+/* ↓↓↓ 오직 moving-objects 하위만 인터랙션 */
+#moving-objects g,
+#moving-objects path {
   cursor: pointer;
+  transform-box: fill-box;   /* 자기 바운딩 기준 */
+  transform-origin: center;  /* 중심 회전 */
+  transition: transform 0.8s ease;
+  /* 깜빡임 심하면 다음 줄 해제해서 테스트 */
+  /* pointer-events: bounding-box; */
 }
 
-/* hover 효과도 마찬가지 */
-svg g:not([id^="Layer"]):hover {
+/* 레이어 그룹 자체(#moving-objects)는 회전 금지 → 하위만 회전 */
+#moving-objects > g:hover,
+#moving-objects path:hover,
+#moving-objects g g:hover {
   transform: rotate(360deg);
-}
-
-svg g, svg path {
-  cursor: pointer;
-  transform-box: fill-box; /* 각 요소의 바운딩 박스 기준 */
-  transform-origin: center; /* 각자의 중심을 회전축으로 */
-  transition: transform 1s ease;
-  pointer-events: bounding-box; /* hover 깜빡임 방지 */
 }
