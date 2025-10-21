@@ -6,13 +6,20 @@ body {
   padding: 0;
 }
 
+svg {
+  width: 150px;
+  height: auto;
+  overflow: visible;
+}
+
 svg g, svg path {
   transition: transform 1s ease;
-  transform-box: fill-box; /* 각 요소의 경계박스 기준으로 */
+  transform-box: fill-box; /* 각 요소의 경계박스 기준 */
   transform-origin: center; /* 그 경계의 중심을 기준으로 */
   cursor: pointer;
 }
 
-svg g:hover, svg path:hover {
+svg g:hover,
+svg path:hover {
   transform: rotate(360deg);
 }
