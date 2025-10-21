@@ -8,8 +8,6 @@ body {
 }
 
 svg {
-  width: 100px;
-  height: auto;
   overflow: visible; /* 회전 시 잘림 방지 */
 }
 svg g:not([id^="Layer"]) {
