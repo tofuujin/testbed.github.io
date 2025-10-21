@@ -1,15 +1,15 @@
-const menuLinks = document.querySelectorAll('.menu a');
-const sections = document.querySelectorAll('.content-section');
+document.querySelectorAll('svg g, svg path').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    const bbox = el.getBBox();
+    const cx = bbox.x + bbox.width / 2;
+    const cy = bbox.y + bbox.height / 2;
+    el.style.transition = 'transform 1s ease';
+    el.style.transformOrigin = `${cx}px ${cy}px`;
+    el.style.transformBox = 'fill-box';
+    el.style.transform = 'rotate(360deg)';
+  });
 
-menuLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = link.dataset.section;
-
-    // 모든 섹션 숨기기
-    sections.forEach(section => section.classList.remove('active'));
-
-    // 클릭한 섹션 표시
-    document.getElementById(target).classList.add('active');
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'rotate(0deg)';
   });
 });
