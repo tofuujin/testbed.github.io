@@ -6,64 +6,12 @@ body {
   padding: 0;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: white;
-  border-bottom: 1px solid #ccc;
-  z-index: 10;
+svg g, svg path {
+  transition: transform 1s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  cursor: pointer;
 }
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 1rem 0;
-}
-
-.logo {
-  position: absolute;
-  left: 20px; /* 화면 왼쪽 여백 */
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.logo img {
-  width: 34px; /* 로고 가로 34px */
-  height: auto;
-}
-
-.menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 3rem;
-}
-
-.menu a {
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-}
-
-.menu a:hover {
-  opacity: 0.6;
-}
-
-main {
-  padding-top: 80px; /* 헤더 공간 확보 */
-}
-
-.content-section {
-  display: none;
-  text-align: center;
-  padding: 4rem 2rem;
-  min-height: 100vh;
-}
-
-.content-section.active {
-  display: block;
+svg g:hover, svg path:hover {
+  transform: rotate(360deg);
 }
