@@ -1,32 +1,35 @@
 /* style.css */
+
+/* 기본 세팅 */
 html, body {
   margin: 0;
   padding: 0;
   background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* ✅ 크기 제어: 여기 값만 바꾸면 전체 스케일 조절 */
+/* SVG 크기 제어 */
 #art {
-  display: block;     /* inline → block, 크기 컨트롤 안정화 */
-  width: 320px;       /* 원하는 크기 */
+  display: block;
+  width: 400px;    /* 크기 여기서 조절 */
   height: auto;
   overflow: visible;  /* 회전 시 잘림 방지 */
 }
 
-/* ↓↓↓ 오직 moving-objects 하위만 인터랙션 */
-#moving-objects g,
-#moving-objects path {
+/* 인터랙션 타깃 */
+#moveo g,
+#moveo path {
   cursor: pointer;
-  transform-box: fill-box;   /* 자기 바운딩 기준 */
-  transform-origin: center;  /* 중심 회전 */
+  transform-box: fill-box;
+  transform-origin: center;
   transition: transform 0.8s ease;
-  /* 깜빡임 심하면 다음 줄 해제해서 테스트 */
-  /* pointer-events: bounding-box; */
 }
 
-/* 레이어 그룹 자체(#moving-objects)는 회전 금지 → 하위만 회전 */
-#moving-objects > g:hover,
-#moving-objects path:hover,
-#moving-objects g g:hover {
+/* hover 시 회전 */
+#moveo g:hover,
+#moveo path:hover {
   transform: rotate(360deg);
 }
