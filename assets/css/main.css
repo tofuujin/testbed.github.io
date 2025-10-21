@@ -4,13 +4,24 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 50;
+  margin: 0;
 }
 
 svg {
   width: 100px;
   height: auto;
   overflow: visible; /* 회전 시 잘림 방지 */
+}
+svg g:not([id^="Layer"]) {
+  transition: transform 1s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+/* hover 효과도 마찬가지 */
+svg g:not([id^="Layer"]):hover {
+  transform: rotate(360deg);
 }
 
 svg g, svg path {
