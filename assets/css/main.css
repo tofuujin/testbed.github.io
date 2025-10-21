@@ -1,25 +1,22 @@
 body {
   background-color: white;
-  color: black;
-  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  padding: 0;
 }
 
 svg {
-  width: 50px;
+  width: 200px;
   height: auto;
-  overflow: visible;
+  overflow: visible; /* 회전 시 잘림 방지 */
 }
 
 svg g, svg path {
-  transition: transform 1s ease;
-  transform-box: fill-box; /* 각 요소의 경계박스 기준 */
-  transform-origin: center; /* 그 경계의 중심을 기준으로 */
   cursor: pointer;
-}
-
-svg g:hover,
-svg path:hover {
-  transform: rotate(360deg);
+  transform-box: fill-box; /* 각 요소의 바운딩 박스 기준 */
+  transform-origin: center; /* 각자의 중심을 회전축으로 */
+  transition: transform 1s ease;
+  pointer-events: bounding-box; /* hover 깜빡임 방지 */
 }
