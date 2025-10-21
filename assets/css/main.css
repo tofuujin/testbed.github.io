@@ -8,7 +8,7 @@ body {
 }
 
 svg {
-  width: 100px;
+  width: 150px;
   height: auto;
   overflow: visible; /* 회전 시 잘림 방지 */
 }
