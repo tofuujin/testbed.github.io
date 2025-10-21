@@ -1,38 +1,74 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SVG Interaction</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<style>
+body {
+  margin: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* SVG 전체 크기 */
+#art {
+  width: 300px;
+  height: auto;
+  overflow: visible;
+  display: block;
+  border: 1px solid #eee;
+}
+
+/* 인터랙션 대상 스타일 */
+#moving-objects g, #moving-objects path, #moving-objects rect {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+
+/* hover 시 회전 */
+#moving-objects g:hover, 
+#moving-objects path:hover, 
+#moving-objects rect:hover {
+  transform: rotate(360deg);
+}
+</style>
 </head>
 <body>
 
-  <!-- Illustrator에서 Export한 SVG 붙여넣기 -->
-  <!-- SVG 맨 위의 <?xml ... ?> 부분은 삭제 -->
-   <?xml version="1.0" encoding="UTF-8"?>
+<!-- 단순한 SVG -->
+<svg id="art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <g id="background">
+    <rect x="0" y="0" width="100" height="100" fill="#fafafa" />
+  </g>
 
-<svg id="moveo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 233.71 223.58">
-  <rect id="id_star09_" data-name="id=&amp;quot;star09&amp;quot;" y="16.91" width="39.73" height="39.73" fill="#231f20"/>
-  <rect id="id_star08_" data-name="id=&amp;quot;star08&amp;quot;" y="97.23" width="39.73" height="39.73" fill="#231f20"/>
-  <rect id="id_star07_" data-name="id=&amp;quot;star07&amp;quot;" y="183.85" width="39.73" height="39.73" fill="#231f20"/>
-  <g id="id_star06_" data-name="id=&amp;quot;star06&amp;quot;">
-    <polygon points="183.16 0 189.6 19.8 210.41 19.8 193.57 32.03 200 51.83 183.16 39.59 166.32 51.83 172.76 32.03 155.92 19.8 176.73 19.8 183.16 0" fill="#231f20"/>
-    <circle cx="210.41" cy="40.51" r="23.3" fill="#231f20"/>
+  <g id="moving-objects">
+    <rect x="20" y="20" width="20" height="20" fill="gray" />
+    <rect x="60" y="20" width="20" height="20" fill="gray" />
   </g>
-  <g id="id_star05_" data-name="id=&amp;quot;star05&amp;quot;">
-    <polygon points="183.16 83.95 189.6 103.75 210.41 103.75 193.57 115.98 200 135.78 183.16 123.55 166.32 135.78 172.76 115.98 155.92 103.75 176.73 103.75 183.16 83.95" fill="#231f20"/>
-    <rect x="187.11" y="95.97" width="42.25" height="42.25" fill="#231f20"/>
-  </g>
-  <g id="id_star04_" data-name="id=&amp;quot;star04&amp;quot;">
-    <polygon points="185.6 160.54 192.03 180.34 212.84 180.34 196.01 192.57 202.44 212.37 185.6 200.13 168.76 212.37 175.19 192.57 158.35 180.34 179.17 180.34 185.6 160.54" fill="#231f20"/>
-    <polygon points="203.87 171.18 210.3 190.97 231.12 190.97 214.28 203.21 220.71 223 203.87 210.77 187.03 223 193.46 203.21 176.62 190.97 197.44 190.97 203.87 171.18" fill="#231f20"/>
-  </g>
-  <polygon id="id_star03_" data-name="id=&amp;quot;star03&amp;quot;" points="111.83 0 118.12 19.35 138.46 19.35 122 31.3 128.29 50.65 111.83 38.69 95.37 50.65 101.66 31.3 85.2 19.35 105.54 19.35 111.83 0" fill="#231f20"/>
-  <polygon id="id_star02_" data-name="id=&amp;quot;star02&amp;quot;" points="111.83 85.59 118.12 104.94 138.46 104.94 122 116.89 128.29 136.24 111.83 124.28 95.37 136.24 101.66 116.89 85.2 104.94 105.54 104.94 111.83 85.59" fill="#231f20"/>
-  <polygon id="id_star01_" data-name="id=&amp;quot;star01&amp;quot;" points="114.7 171.18 120.99 190.52 141.33 190.52 124.87 202.48 131.16 221.83 114.7 209.87 98.24 221.83 104.53 202.48 88.07 190.52 108.42 190.52 114.7 171.18" fill="#231f20"/>
 </svg>
 
-  <script src="script.js"></script>
+<script>
+// 모든 인터랙션 타깃 가져오기
+document.querySelectorAll('#moving-objects rect, #moving-objects path, #moving-objects g')
+  .forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const b = el.getBBox();
+      const cx = b.x + b.width / 2;
+      const cy = b.y + b.height / 2;
+      el.style.transformOrigin = `${cx}px ${cy}px`;
+      el.style.transformBox = 'fill-box';
+      el.style.transform = 'rotate(360deg)';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'rotate(0deg)';
+    });
+  });
+</script>
+
 </body>
 </html>
